@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Seat Availability</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='user_dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='seat_availability.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Check Seat Availability</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('user_dashboard') }}">Home</a></li>
+                <li><a href="{{ url_for('manage_bookings') }}">Manage Bookings</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>{{ bus[1] }}</h2>
+        <p>Total Seats: {{ bus[2] }}</p>
+        <p>Current Occupancy: {{ bus[3] }}</p>
+        <p>Available Seats: {{ bus[2] - bus[3] }}</p>
+        <p>Available Days: {{ bus[4] }}</p>
+        <p>Source City: {{ bus[5] }}</p>
+        <p>Destination City: {{ bus[6] }}</p>
+        <p>Route Time: {{ bus[7] }}</p>
+        <p>Route Distance: {{ bus[8] }} km</p>
+
+        <!-- Calculate occupancy percentage -->
+        {% set occupancy_percentage = (bus[3] / bus[2]) * 100 %}
+
+        <!-- Determine color based on occupancy percentage -->
+        {% set bus_color = "green" %}
+        {% if occupancy_percentage > 60 and occupancy_percentage < 90 %}
+            {% set bus_color = "yellow" %}
+        {% elif occupancy_percentage >= 90 %}
+            {% set bus_color = "red" %}
+        {% endif %}
+
+        <!-- Display bus color -->
+        <p>Bus Status: <span class="bus-color {{ bus_color }}">{{ bus_color | capitalize }}</span></p>
+
+    </main>
+</body>
+</html>

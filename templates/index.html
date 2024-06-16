@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Booking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('../Images/bus.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bus Booking System</h1>
+        <div class="split">
+            <div class="admin-section">
+                <h2>Admin</h2>
+                <a href="/admin/login" class="button">Admin Login</a>
+                <a href="/admin/register" class="button">Admin Register</a>
+            </div>
+            <div class="user-section">
+                <h2>User</h2>
+                <a href="/user/login" class="button">User Login</a>
+                <a href="/user/register" class="button">User Register</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

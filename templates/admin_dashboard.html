@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="/admin/dashboard">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="/admin/login">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="cards">
+            <div class="card">
+                <h2>Manage Users</h2>
+                <p>View and manage registered users.</p>
+                <a href="{{ url_for('view_users') }}">View Users</a>
+            </div>
+            <div class="card">
+                <h2>Manage Buses</h2>
+                <p>View and manage bus details.</p>
+                <a href="{{ url_for('manage_buses') }}">Manage Buses</a>
+            </div>
+            <div class="card">
+                <h2>Manage Bookings</h2>
+                <p>View and manage bus bookings.</p>
+                <a href="{{ url_for('admin_manage_bookings') }}">View Bookings</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

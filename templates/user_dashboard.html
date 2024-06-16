@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='user_dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('user_dashboard') }}">Home</a></li>
+                <li><a href="{{ url_for('manage_bookings') }}">Manage Bookings</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section action ="/user/dashboard" class="cards">
+            {% for bus in buses %}
+            <div class="card">
+                <h2>{{ bus[1] }}</h2>
+                <p>Total Seats: {{ bus[2] }}</p>
+                <p>Current Occupancy: {{ bus[3] }}</p>
+                <p>Available Days: {{ bus[4] }}</p>
+                <p>Source City: {{ bus[5] }}</p>
+                <p>destination City: {{ bus[6] }}</p>
+                <p>Route Time: {{ bus[7] }}</p>
+                <p>Route Distance: {{ bus[8] }} km</p>
+                <a href="{{ url_for('check_seat_availability', bus_id=bus[0]) }}">Check Seat Availability</a>
+                <a href="{{ url_for('book_bus', bus_id=bus[0]) }}">Book a Seat</a>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

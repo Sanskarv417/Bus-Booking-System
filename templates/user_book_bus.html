@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Seat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='user_dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Book a Seat</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('user_dashboard') }}">Home</a></li>
+                <li><a href="{{ url_for('manage_bookings') }}">Manage Bookings</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>{{ bus['bus_name'] }}</h2>
+        <p>Total Seats: {{ bus[2] }}</p>
+        <p>Current Occupancy: {{ bus[3] }}</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="/book_bus/{{ bus[0] }}" method="post">
+            <label for="seat_number">Choose Seat Number:</label>
+            <select id="seat_number" name="seat_number">
+                {% for seat in range(1, bus[2] + 1) %}
+                    {% if seat in booked_seats %}
+                        <option value="{{ seat }}" disabled>Seat {{ seat }} - Booked</option>
+                    {% else %}
+                        <option value="{{ seat }}">Seat {{ seat }} - Available</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <button type="submit">Book Seat</button>
+        </form>
+    </main>
+</body>
+</html>

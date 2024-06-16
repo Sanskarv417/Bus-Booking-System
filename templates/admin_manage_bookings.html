@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_bookings.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Manage Bookings</h1>
+        <nav>
+            <ul>
+                <li><a href="/admin/dashboard">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="/admin/login">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="bookings">
+            <h2>Bookings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Bus ID</th>
+                        <th>Seat Number</th>
+                        <th>Booking Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking[0] }}</td>
+                        <td>{{ booking[1] }}</td>
+                        <td>{{ booking[2] }}</td>
+                        <td>{{ booking[3] }}</td>
+                        <td>{{ booking[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

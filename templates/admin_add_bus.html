@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Bus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Add New Bus</h1>
+    </header>
+    <main>
+        <form action="/admin/add_bus" method="POST">
+            <label for="bus_name">Bus Name:</label>
+            <input type="text" id="bus_name" name="bus_name" required><br>
+            
+            <label for="total_seats">Total Seats:</label>
+            <input type="number" id="total_seats" name="total_seats" required><br>
+            
+            <label for="current_occupancy">Current Occupancy:</label>
+            <input type="number" id="current_occupancy" name="current_occupancy" required><br>
+            
+            <label for="available_days">Available Days:</label><br>
+            <input type="checkbox" id="monday" name="available_days" value="Monday">
+            <label for="monday">Monday</label><br>
+            <input type="checkbox" id="tuesday" name="available_days" value="Tuesday">
+            <label for="tuesday">Tuesday</label><br>
+            <input type="checkbox" id="wednesday" name="available_days" value="Wednesday">
+            <label for="wednesday">Wednesday</label><br>
+            <input type="checkbox" id="thursday" name="available_days" value="Thursday">
+            <label for="thursday">Thursday</label><br>
+            <input type="checkbox" id="friday" name="available_days" value="Friday">
+            <label for="friday">Friday</label><br>
+            <input type="checkbox" id="saturday" name="available_days" value="Saturday">
+            <label for="saturday">Saturday</label><br>
+            <input type="checkbox" id="sunday" name="available_days" value="Sunday">
+            <label for="sunday">Sunday</label><br>
+            
+            <label for="source_city">Source City:</label>
+            <input type="text" id="source_city" name="source_city" required><br>
+
+            <label for="destination_city">Destination City:</label>
+            <input type="text" id="destination_city" name="destination_city" required><br>
+            
+            <label for="route_time">Route Time (HH:MM:SS):</label>
+            <input type="time" id="route_time" name="route_time" required><br>
+            
+            <label for="route_distance">Route Distance (km):</label>
+            <input type="number" step="0.01" id="route_distance" name="route_distance" required><br>
+            
+            <button type="submit">Add Bus</button>
+        </form>
+    </main>
+</body>
+</html>

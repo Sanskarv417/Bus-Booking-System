@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Bus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Update Bus Details</h1>
+        <nav>
+            <ul>
+                <li><a href="/admin/dashboard">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="/admin/login">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form action="{{ url_for('update_bus', bus_id=bus[0])}}" method="POST">
+            <label for="bus_name">Bus Name:</label>
+            <input type="text" id="bus_name" name="bus_name" value="{{ bus[1] }}" required>
+            <label for="total_seats">Total Seats:</label>
+            <input type="number" id="total_seats" name="total_seats" value="{{ bus[2] }}" required>
+            <label for="current_occupancy">Current Occupancy:</label>
+            <input type="number" id="current_occupancy" name="current_occupancy" value="{{ bus[3] }}" required>
+            <label for="available_days">Available Days:</label>
+            <select id="available_days" name="available_days" multiple>
+                <option value="Monday" {% if "Monday" in bus[4].split(",") %}selected{% endif %}>Monday</option>
+                <option value="Tuesday" {% if "Tuesday" in bus[4].split(",") %}selected{% endif %}>Tuesday</option>
+                <option value="Wednesday" {% if "Wednesday" in bus[4].split(",") %}selected{% endif %}>Wednesday</option>
+                <option value="Thursday" {% if "Thursday" in bus[4].split(",") %}selected{% endif %}>Thursday</option>
+                <option value="Friday" {% if "Friday" in bus[4].split(",") %}selected{% endif %}>Friday</option>
+                <option value="Saturday" {% if "Saturday" in bus[4].split(",") %}selected{% endif %}>Saturday</option>
+                <option value="Sunday" {% if "Sunday" in bus[4].split(",") %}selected{% endif %}>Sunday</option>
+            </select>
+            
+            <label for="source_city">Source city:</label>
+            <input type="text" id="source_city" name="source_city" value="{{ bus[5] }}"></input>
+
+            <label for="destination_city">Destination City:</label>
+            <input type="text" id="destination_city" name="destination_city" value="{{ bus[6] }}"></input>
+
+            <label for="route_time">Route Time:</label>
+            <input type="time" id="route_time" name="route_time" value="{{ bus[7] }}">
+            
+            <label for="route_distance">Route Distance (km):</label>
+            <input type="number" id="route_distance" name="route_distance" step="0.1" value="{{ bus[8] }}" required>
+            
+            <button type="submit">Update Bus</button>
+        </form>
+        <a href="{{ url_for('manage_buses') }}">Back to Manage Buses</a>
+    </main>
+</body>
+</html>

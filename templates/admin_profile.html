@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile_style.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Admin Profile</h1>
+        <div class="profile-info">
+            <h2>{{ admin.username }}</h2>
+            <p>Email: {{ admin.email }}</p>
+        </div>
+        <div class="profile-actions">
+            <a href="/admin/edit/{{ admin.id }}" class="button">Edit Profile</a>
+            <a href="/admin/reports" class="button">View Reports</a>
+            <a href="/admin/settings" class="button">Settings</a>
+            <a href="/admin/logout" class="button">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

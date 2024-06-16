@@ -1,0 +1,54 @@
+.seat {
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    font-weight: bold;
+}
+
+.seat.green {
+    background-color: green;
+}
+
+.seat.yellow {
+    background-color: yellow;
+    color: black; /* Better contrast on yellow background */
+}
+
+.seat.red {
+    background-color: red;
+}
+
+.seat.booked {
+    background-color: gray;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.bus-color.green {
+    color: green;
+}
+
+.bus-color.yellow {
+    color: yellow;
+}
+
+.bus-color.red {
+    color: red;
+}

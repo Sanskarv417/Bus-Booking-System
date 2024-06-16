@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Seat Layout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .seat {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .seat.booked {
+            background-color: red;
+            cursor: not-allowed;
+        }
+        .seat.available {
+            background-color: green;
+        }
+        .seat.selected {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bus Seat Layout</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('user_dashboard') }}">Home</a></li>
+                <li><a href="{{ url_for('manage_bookings') }}">Manage Bookings</a></li>
+                <!-- Add other navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="bus-layout">
+            <h2>{{ bus['bus_name'] }} - Seat Selection</h2>
+            <div>
+                {% for seat in seats %}
+                <div class="seat {% if seat['is_booked'] %} booked {% else %} available {% endif %}" data-seat-number="{{ seat['seat_number'] }}">
+                    {{ seat['seat_number'] }}
+                </div>
+                {% endfor %}
+            </div>
+            <form id="book-seat-form" action="{{ url_for('book_seat', bus_id=bus['id']) }}" method="POST">
+                <input type="hidden" id="selected-seat" name="selected_seat">
+                <button type="submit">Book Selected Seat</button>
+            </form>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const seats = document.querySelectorAll('.seat.available');
+            
+            seats.forEach(seat => {
+                seat.addEventListener('click', function() {
+                    const selectedSeat = document.querySelector('.seat.selected');
+                    if (selectedSeat) {
+                        selectedSeat.classList.remove('selected');
+                    }
+                    this.classList.add('selected');
+                    document.getElementById('selected-seat').value = this.getAttribute('data-seat-number');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

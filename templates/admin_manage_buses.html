@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Buses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="/admin/dashboard">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="/admin/login">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="cards">
+            <a class="add-bus" href="{{ url_for('add_bus') }}">Add New Bus</a>
+            {% for bus in buses %}
+            <div class="card">
+                <h2>{{ bus['bus_name'] }}</h2>
+                <p>Total Seats: {{ bus['total_seats'] }}</p>
+                <p>Current Occupancy: {{ bus['current_occupancy'] }}</p>
+                <p>Available Days: {{ bus['available_days'] }}</p>
+                <p>Route: {{ bus['route'] }}</p>
+                <p>Source City: {{ bus['source_city'] }}</p>
+                <p>Destination City: {{ bus['destination_city'] }}</p>
+                <p>Route Time: {{ bus['route_time'] }}</p>
+                <p>Route Distance: {{ bus['route_distance'] }} km</p>
+                <a class="edit-bus" href="{{ url_for('update_bus', bus_id=bus[0]) }}">Update bus details</a>
+                <a class="delete-bus" href="{{ url_for('delete_bus', bus_id=bus[0]) }}" onclick="return confirm('Are you sure you want to delete this bus?');">Delete</a>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

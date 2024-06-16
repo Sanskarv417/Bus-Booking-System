@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - View Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='viewing_users.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Users List</h1>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[1] }}</td>
+                        <td>{{ user[3] }}</td>  
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/admin/dashboard" class="button">Back to Dashboard</a>
+    </div>
+</body>
+</html>
